@@ -1,1 +1,13 @@
-test
+git init
+
+git add -A
+
+git commit -m "first commit"
+
+git remote add origin https://github.com/xxxx/xxx.git
+
+git push -f origin master
+
+
+git clone https://github.com/xxxx/xxx.git
+
