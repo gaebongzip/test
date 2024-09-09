@@ -39,3 +39,30 @@ for /f "usebackq tokens=*" %%i in (%files%) do (
 del %files%
 
 endlocal
+
+
+
+
+
+## .yarnrc 파일 생성
+vi .yarnrc
+---
+yarn-offline-mirror "./npm_packages"
+yarn-offline-mirror-pruning true
+---
+
+## 패키지 다운로드
+yarn install
+
+
+
+#!/bin/bash
+
+REPOSITORY=http://{ Nexus 주소 }:{ Nexus 포트(필요시) }/repository/{ repo 이름 }/
+PACKAGES_PATH=./npm_packages
+
+for package in $PACKAGES_PATH/*.tgz; do
+    npm publish --registry=$REPOSITORY $package
+done
+
+npm login --registry http://{ Nexus 주소 }:{ Nexus 포트(필요시) }
